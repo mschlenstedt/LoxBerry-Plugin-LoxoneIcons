@@ -46,7 +46,7 @@ $template = HTML::Template->new(
 $template->param("PLUGINNAME", $lbpplugindir);
 
 # Template
-LoxBerry::Web::lbheader("LoxoneIcons V$version", "", "");
+LoxBerry::Web::lbheader("LoxoneIcons V$version", "https://wiki.loxberry.de/plugins/loxoneicons/start", "");
 print $template->output();
 LoxBerry::Web::lbfooter();
 
