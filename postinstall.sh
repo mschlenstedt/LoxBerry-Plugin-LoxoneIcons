@@ -629,5 +629,10 @@ echo "<INFO> Creating a ZIP archive of all icons for downloading..."
 cd $LBPDATA/$pluginname
 7z a icons.zip icons
 
+echo "<INFO> Installing loxicon from https://github.com/strobejb/loxicon/..."
+cd $LBPBIN/$pluginname
+git clone https://github.com/strobejb/loxicon/
+
+
 # Exit with Status 0
 exit 0
