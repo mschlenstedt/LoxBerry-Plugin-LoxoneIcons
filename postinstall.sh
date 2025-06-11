@@ -617,10 +617,10 @@ for i in "${icons[@]}"; do   # The quotes are necessary here
 	echo "<INFO> Converting $i to PNG..."
 	basename=$(basename $i .svg)
 	if [ -e "$LBPDATA/$pluginname/icons/svg/filled/$i" ]; then
-		cat $LBPDATA/$pluginname/icons/svg/filled/$i | sed -E 's/<path/<path fill="#FFFFFF"/g' | rsvg-convert -f png -w 32 -h 32 /dev/stdin > $LBPDATA/$pluginname/icons/png/filled/$basename.png
+		cat $LBPDATA/$pluginname/icons/svg/filled/$i | sed -E 's/<path/<path fill="#FFFFFF"/g' | rsvg-convert -f png -w 96 -h 96 /dev/stdin > $LBPDATA/$pluginname/icons/png/filled/$basename.png
 	fi
 	if [ -e "$LBPDATA/$pluginname/icons/svg/outlined/$i" ]; then
-		cat $LBPDATA/$pluginname/icons/svg/outlined/$i | sed -E 's/black/white/g' | rsvg-convert -f png -w 32 -h 32 /dev/stdin > $LBPDATA/$pluginname/icons/png/outlined/$basename.png
+		cat $LBPDATA/$pluginname/icons/svg/outlined/$i | sed -E 's/black/white/g' | rsvg-convert -f png -w 96 -h 96 /dev/stdin > $LBPDATA/$pluginname/icons/png/outlined/$basename.png
 	fi
 done
 
