@@ -633,7 +633,7 @@ mv loxone_icons.zip loxone_icons
 echo "<INFO> Installing loxicon from https://github.com/strobejb/loxicon/..."
 cd $LBPBIN/$pluginname
 git clone https://github.com/strobejb/loxicon/
-if [ -e " $LBPBIN/$pluginname/loxicon/loxicon.py" ]; then
+if [ -e "$LBPBIN/$pluginname/loxicon/loxicon.py" ]; then
     echo "<OK> Installation of loxicon script successfull."
 else
     echo "<WARNING> Installation of loxicon script failed. The plugin will not work without."
