@@ -18,7 +18,13 @@ pluginname=$3
 
 # Installing Perl MOdule for WTTR.in Grabber
 echo "<INFO> Installing Requirements for loxicons..."
-pip3 install -r $LBPBIN/$pluginname/loxicon/requirements.txt
+if [ -e "$LBPBIN/$pluginname/loxicon/requirements.txt" ]; then
+    pip3 install -r $LBPBIN/$pluginname/loxicon/requirements.txt
+else
+    echo "<WARNING> Python Pip installation failed! The plugin will not work without."
+    echo "<WARNING> Giving up."
+    exit 2;
+fi
 
 # Exit with Status 0
 exit 0

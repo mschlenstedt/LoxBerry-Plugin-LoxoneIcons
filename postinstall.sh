@@ -587,10 +587,10 @@ wrench.svg
 )
 
 folder=(
-$LBPDATA/$pluginname/icons/svg/filled
-$LBPDATA/$pluginname/icons/svg/outlined
-$LBPDATA/$pluginname/icons/png/filled
-$LBPDATA/$pluginname/icons/png/outlined
+$LBPDATA/$pluginname/loxone_icons/svg/filled
+$LBPDATA/$pluginname/loxone_icons/svg/outlined
+$LBPDATA/$pluginname/loxone_icons/png/filled
+$LBPDATA/$pluginname/loxone_icons/png/outlined
 )
 
 # Create folders
@@ -603,11 +603,11 @@ echo "<INFO> Downloading Icons from Loxone Website..."
 for i in "${icons[@]}"; do   # The quotes are necessary here
 	if [ ! -e "$LBPDATA/$pluginname/icons/svg/filled/$i" ]; then
 		echo "<INFO> Downloading $i..."
-		wget https://configurator.loxone.com/files/translations/IconsFilled/$i -P $LBPDATA/$pluginname/icons/svg/filled/
+		wget https://configurator.loxone.com/files/translations/IconsFilled/$i -P $LBPDATA/$pluginname/loxone_icons/svg/filled/
 	fi
 	if [ ! -e "$LBPDATA/$pluginname/icons/svg/outlined/$i" ]; then
 		echo "<INFO> Downloading $i..."
-		wget https://configurator.loxone.com/files/translations/Icons/$i -P $LBPDATA/$pluginname/icons/svg/outlined/
+		wget https://configurator.loxone.com/files/translations/Icons/$i -P $LBPDATA/$pluginname/loxone_icons/svg/outlined/
 	fi
 done
 
@@ -616,23 +616,30 @@ echo "<INFO> Converting all downloaded icons from SVG to PNG..."
 for i in "${icons[@]}"; do   # The quotes are necessary here
 	echo "<INFO> Converting $i to PNG..."
 	basename=$(basename $i .svg)
-	if [ -e "$LBPDATA/$pluginname/icons/svg/filled/$i" ]; then
-		cat $LBPDATA/$pluginname/icons/svg/filled/$i | sed -E 's/<path/<path fill="#FFFFFF"/g' | rsvg-convert -f png -w 96 -h 96 /dev/stdin > $LBPDATA/$pluginname/icons/png/filled/$basename.png
+	if [ -e "$LBPDATA/$pluginname/loxone_icons/svg/filled/$i" ]; then
+		cat $LBPDATA/$pluginname/loxone_icons/svg/filled/$i | sed -E 's/<path/<path fill="#FFFFFF"/g' | rsvg-convert -f png -w 96 -h 96 /dev/stdin > $LBPDATA/$pluginname/loxone_icons/png/filled/$basename.png
 	fi
-	if [ -e "$LBPDATA/$pluginname/icons/svg/outlined/$i" ]; then
-		cat $LBPDATA/$pluginname/icons/svg/outlined/$i | sed -E 's/black/white/g' | rsvg-convert -f png -w 96 -h 96 /dev/stdin > $LBPDATA/$pluginname/icons/png/outlined/$basename.png
+	if [ -e "$LBPDATA/$pluginname/loxone_icons/svg/outlined/$i" ]; then
+		cat $LBPDATA/$pluginname/loxone_icons/svg/outlined/$i | sed -E 's/black/white/g' | rsvg-convert -f png -w 96 -h 96 /dev/stdin > $LBPDATA/$pluginname/loxone_icons/png/outlined/$basename.png
 	fi
 done
 
 # Create Zip Archiv
 echo "<INFO> Creating a ZIP archive of all icons for downloading..."
 cd $LBPDATA/$pluginname
-7z a icons.zip icons
+7z a loxone_icons.zip loxone_icons
+mv loxone_icons.zip loxone_icons
 
 echo "<INFO> Installing loxicon from https://github.com/strobejb/loxicon/..."
 cd $LBPBIN/$pluginname
 git clone https://github.com/strobejb/loxicon/
-
+if [ -e " $LBPBIN/$pluginname/loxicon/loxicon.py" ]; then
+    echo "<OK> Installation of loxicon script successfull."
+else
+    echo "<WARNING> Installation of loxicon script failed. The plugin will not work without."
+    echo "<WARNING> Giving up."
+    exit 2
+fi
 
 # Exit with Status 0
 exit 0
