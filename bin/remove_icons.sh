@@ -17,16 +17,3 @@ for file in *.svg; do
     fi
 done
 
-# Copy files
-i=9000
-cd $PDATA/loxone_icons/svg/filled
-for file in *.svg; do
-    cp $file $PDATA/IconLibrary/$i.$file
-    i=$(printf "%04d\n" $(($i+1)))
-done
-
-cd $PDATA/weather_icons/svg
-for file in *.svg; do
-    cp $file $PDATA/IconLibrary/$i.$file
-    i=$(printf "%04d\n" $(($i+1)))
-done
