@@ -594,6 +594,7 @@ $LBPDATA/$pluginname/loxone_icons/png/outlined
 )
 
 # Create folders
+rm -r $LBPDATA/$pluginname/loxone_icons
 for i in "${folder[@]}"; do   # The quotes are necessary here
 	mkdir -p $i
 done
@@ -640,6 +641,10 @@ else
     echo "<WARNING> Giving up."
     exit 2
 fi
+
+echo "<INFO> Configuring elFinder..."
+rm $LBPHTMLAUTH/$pluginname/files
+ln -s $LBPDATA/$pluginname $LBPHTMLAUTH/$pluginname/files
 
 # Exit with Status 0
 exit 0
