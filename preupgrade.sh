@@ -13,8 +13,8 @@ mkdir -p /tmp/$ARGV1\_upgrade/data
 mkdir -p /tmp/$ARGV1\_upgrade/log
 
 echo "<INFO> Backing up existing data files"
-cp -p -v -r $ARGV5/data/plugins/$ARGV3/ /tmp/$ARGV1\_upgrade/data
-rm -r /tmp/$ARGV1\_upgrade/data/loxone_icons # we use the freshly downloaded data from loxone
+cp -p -v -r $ARGV5/data/plugins/$ARGV3/IconLibrary /tmp/$ARGV1\_upgrade/data
+cp -p -v -r $ARGV5/data/plugins/$ARGV3/*.zip /tmp/$ARGV1\_upgrade/data
 
 echo "<INFO> Backing up existing log files"
 cp -p -v -r $ARGV5/log/plugins/$ARGV3/ /tmp/$ARGV1\_upgrade/log
