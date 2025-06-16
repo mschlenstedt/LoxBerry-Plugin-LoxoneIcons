@@ -645,6 +645,7 @@ fi
 echo "<INFO> Configuring elFinder..."
 rm $LBPHTMLAUTH/$pluginname/files
 ln -s $LBPDATA/$pluginname $LBPHTMLAUTH/$pluginname/files
+mkdir -p $LBPDATA/$pluginname/.trash
 
 # Exit with Status 0
 exit 0
