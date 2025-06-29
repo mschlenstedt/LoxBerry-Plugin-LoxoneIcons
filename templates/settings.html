@@ -206,6 +206,32 @@ function create() {
 		$("[id^=btn]").removeClass('ui-disabled');
 	})
 }
+
+function upload() {
+	console.log ("Upload Icon Lib");
+	$("[id^=btn]").addClass('ui-disabled');
+	$.ajax( { 
+			type: 'POST',
+			data: { 
+				ajax: 'upload'
+			}
+		} )
+	.fail(function( data ) {
+		console.log( "Upload Icon Lib Fail", data );
+		$("#btnupload").attr("style", "background-color: #FF3E3E; color: white;text-shadow: none");
+	})
+	.done(function( data ) {
+		console.log( "Upload Icon Lib Success: ", data );
+		if(data.error) {
+			$("#btnupload").attr("style", "background-color: #FF3E3E; color: white;text-shadow: none");
+		} else {
+			$("#btnupload").attr("style", "background-color: #83C43B; color: white;text-shadow: none");
+		}
+	})
+	.always(function( data ) {
+		$("[id^=btn]").removeClass('ui-disabled');
+	})
+}
 </script>
 </TMPL_IF>
 

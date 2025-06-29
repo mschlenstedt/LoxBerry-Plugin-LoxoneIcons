@@ -249,7 +249,7 @@ sub upload
 
 	# Upload Lib
 	my $errors;
-	system("$lbpbindir/upload_iconlib.sh >/dev/null 2>&1");
+	system("$lbpbindir/upload_iconlib.sh 1 >/dev/null 2>&1");
 	if ($?) {
 		$errors++;
 	}
